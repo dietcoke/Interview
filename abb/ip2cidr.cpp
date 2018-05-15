@@ -1,7 +1,7 @@
 class Solution
 {
 public:
-	vector<string> ip2CIDR(string & ip, int range)
+	vector<string> ip2CIDR(string ip, int range)
 	{
 		if (range == 0)
 		{
@@ -14,7 +14,7 @@ public:
 
 		while (range>0)
 		{
-			int lastOne = ipl & (-ipl);
+			long long lastOne = ipl == 0 ? pow((long long)2, 32) : ipl & (-ipl);
 
 			while (lastOne>range)
 			{
@@ -35,7 +35,7 @@ public:
 		string result = "";
 		for (int i = 0; i<4; i++)
 		{
-			result = to_string((ip & 255)) + (i==3 ? "" : ".") + result;
+			result = to_string((ip & 255)) + "." + result;
 			ip = ip >> 8;
 		}
 
